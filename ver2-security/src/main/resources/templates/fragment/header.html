@@ -1,0 +1,56 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+	<div id="header" th:fragment="header" style="background-color: #eee;">
+		<div>
+			<span><a href="/">index</a></span>
+			<span><a href="/info">info</a></span>
+			<span><a href="/dashboard">dashboard</a></span>
+			<span><a href="/admin">admin</a></span>
+		</div>
+		<div>
+			<!-- 인증되지 않은(로그인하지 않은) 사용자 -->
+			<!-- authorize : 권한을 부여하다. 승인하다. -->
+			<span><a sec:authorize="isAnonymous()" th:href="@{/login}">로그인</a></span>
+			<span><a sec:authorize="isAnonymous()" th:href="@{/join}">회원가입</a></span>
+			<span><a sec:authorize="isAnonymous()" th:href="@{/join/admin}">회원가입 - 관리자</a></span>
+			<!-- th:href="@{/login}" : get 요청 -->
+			<!-- sec:authorize="isAnnonymous()" : security에서 제공하는 인증 확인 기능 sec:authorize
+			 isAnnonymous() : 아무나 메소드-->
+			
+			
+			<!-- 인증된(로그인 한) 사용자 -->
+			<span><a sec:authorize="isAuthenticated()" th:href="@{/logout}">로그아웃</a></span>
+			<!-- isAuthenticated() : 인증 확인 메소드 (session 안써도 됨) 리턴은 boolean -->
+		</div>
+		<div>
+			<!-- 인증시 사용된 객체에 대한 정보 -->
+			<span>😍인증에 사용된 객체 정보 : </span>
+			<span sec:authorize="isAuthenticated()" sec:authentication="principal"></span>
+			<!-- sec:authentication="principal"> sec:authentication 인증이 됐다면, principal 정보 가져옴 -->
+		</div>
+		<div>
+			<!-- 인증시 사용된 객체의 username (ID) -->
+			<span>❤️username : </span>
+			<span sec:authorize="isAuthenticated()" sec:authentication="name"></span>
+			<span> / </span>
+			<span sec:authorize="isAuthenticated()" sec:authentication="principal.username"></span>
+			<!-- principal로 접근도 가능 -->
+		</div>
+		<div>
+			<!-- 인증시 사용된 객체의 role (권한) -->
+			<span>😎role : </span>
+			<span sec:authorize="isAuthenticated()" sec:authentication="authorities"></span>
+			<span> / </span>
+			<span sec:authorize="isAuthenticated()" sec:authentication="principal.authorities"></span>
+		</div>
+		<div>
+			<!-- ROLE_ADMIN 권한 있으면, 화면에 표시 (출력) -->
+			<span sec:authorize="hasRole('ADMIN')">관리자</span>
+			<!-- ROLE_USER 권한 있으면, 화면에 표시 (출력) -->
+			<span sec:authorize="hasRole('USER')">사용자</span>
+			<span> / </span>
+			<!-- ROLE_ADMIN, ROLE_USER 권한 있으면, 화면에 표시 (출력) -->
+			<span sec:authorize="hasAnyRole('ADMIN', 'USER')">관리자 또는 사용자</span>
+		</div>
+		
+	</div>
+</html>
