@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>도서 검색</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<div class="text-center">
+		<h1 class="mt-5 fw-bold">📖 도서 검색 📖</h1>
+		<h2>검색하고 싶은 도서명을 입력하세요!</h2>
+	</div>
+	<div class="container d-flex justify-content-center mt-5">
+		<form action="/book/list" class="form">
+			<div class="row">
+				<label class="col-auto col-form-label" for="query">검색어 : </label>
+				<div class="col-auto">
+					<input type="text" name="query" id="query" placeholder="검색어를 입력하세요..." class="form-control col-auto">
+				</div>
+				<div class="col-auto">
+					<input type="submit" value="검색" class="btn btn-primary col-auto">
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+</html>
