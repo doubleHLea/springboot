@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>로그인</title>
+</head>
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+	
+	<h1>로그인</h1>
+	<form action="/sign/success" method="post">
+		<div th:if="${param.error}">
+			<div style="color: #f00;">
+				사용자 ID 또는 비밀번호를 확인하세요!
+			</div>
+		</div>
+		<div>
+			<label>ID : </label>
+			<input type="text" id="username" name="username">
+		</div>
+		<div>
+			<label>PW : </label>
+			<input type="text" id="password" name="password">
+		</div>
+		<div>
+			<input type="submit" value="전송">
+		</div>
+	</form>
+</body>
+</html>

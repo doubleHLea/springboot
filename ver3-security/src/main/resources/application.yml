@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ver3
+    username: root
+    password: 1111  
+  jpa:
+    show-sql: true
+#   sql문 보여주는 설정
+    hibernate:
+      ddl-auto: none
+#      ddl 자동 생성
+    defer-datasource-initialization: true   ## hibernate -> script 실행
+    properties:
+      hibernate:
+        "[format_sql]": true
+        "[highlight_sql]": true
+  sql:
+    init:
+      mode: never	## always : 모든 DBMS sql script 실행
+                    ## embedded : 내장 DBMS만 실행
+                    ## never : 내장, 외장 모든 DBMS 실행하지 않음
+#      schema-locations:
+#      - classpath:database/schema.sql
+      data-locations:
+      - classpath:database/data.sql
+logging:
+  level:
+    org:
+      hibernate:
+        orm:
+          jdbc:
+            bind: TRACE
+
+server:
+  port: 8085
