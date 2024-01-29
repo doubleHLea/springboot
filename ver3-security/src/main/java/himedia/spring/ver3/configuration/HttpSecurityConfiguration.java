@@ -19,26 +19,28 @@ public class HttpSecurityConfiguration {
 		
 		http.csrf((csrf) -> csrf.disable())
 			.authorizeHttpRequests((authorizeRequest) ->
-				authorizeRequest.requestMatchers("/", "/signIn", "/signOut", "/success").permitAll()
+				authorizeRequest.requestMatchers("/", "/signIn", "/signOut").permitAll()
 				.anyRequest().authenticated())
 //				.exceptionHandling(error -> error.accessDeniedPage(""))
 			.formLogin((formLogin) -> formLogin.loginPage("/signIn")
 					.defaultSuccessUrl("/sign/success", true)
+					.failureUrl("/login?error=true")
 					.usernameParameter("username")
 					.passwordParameter("password")
-					.loginProcessingUrl("/signIn"));
-		http.logout(logout -> logout.logoutUrl("/signOut")
+					.loginProcessingUrl("/sign/success"));
+		
+		http.logout(logout -> logout.logoutUrl("/logOut")
 				.logoutSuccessUrl("/signOut")
 				.invalidateHttpSession(true));
 		
 		return http.build();
 	}
 	
-	@Autowired
-	protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication()
-			.withUser("user1").password("{noop}1111").roles("USER");
-	}
+//	@Autowired
+//	protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//		auth.inMemoryAuthentication()
+//			.withUser("user1").password("{noop}1111").roles("USER");
+//	}
 	
 //	@Bean
 //	protected PasswordEncoder passwordEncoder() {

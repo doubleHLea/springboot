@@ -6,18 +6,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UserSignController {
-
-	@GetMapping("/")
-	public String index() {
-		return "index";
-	}
 	
 	@GetMapping("/signIn")
 	public String signIn() {
 		return "sign/signIn";
 	}
+	@GetMapping("/signOut")
+	public String signOut() {
+		return "sign/signOut";
+	}
 	
-	@PostMapping("/sign/success")
+	@GetMapping("/sign/success")
 	public String success() {
 		return "sign/success";
 	}

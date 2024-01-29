@@ -13,7 +13,7 @@
 			
 			
 			<!-- 인증된(로그인 한) 사용자 -->
-			<span><a sec:authorize="isAuthenticated()" th:href="@{/singOut}">로그아웃</a></span>
+			<span><a sec:authorize="isAuthenticated()" th:href="@{/logOut}">로그아웃</a></span>
 			<!-- isAuthenticated() : 인증 확인 메소드 (session 안써도 됨) 리턴은 boolean -->
 		</div>
 		<div>
