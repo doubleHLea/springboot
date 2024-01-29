@@ -35,7 +35,7 @@ public class SecutiryConfig {
 						
 						.anyRequest().authenticated())  // 나머지 리소스는 인증 절차 필요   
 						.exceptionHandling(error -> 
-								error.accessDeniedPage("/access-denied")
+								error.accessDeniedPage("/access/denied") // 접근 거부 페이지 URL
 								)
 //			.formLogin(Customizer.withDefaults());		// 폼 로그인 사용
 			.formLogin(formLogin -> 					// 로그인 뷰 지정(POST 요청)
